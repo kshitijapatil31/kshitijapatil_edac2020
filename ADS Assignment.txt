@@ -1,0 +1,1466 @@
+ADS Assignment 
++++++++++++++++++++++++ 
+
+=========================Fibonacci================== 
+
+1)using iteration
+
+package ads;
+import java.util.*;
+class FibboSeries
+       
+{
+    public static void main(String args[])
+    {
+      int a=0,b=1,c;
+      Scanner sc=new Scanner(System.in);
+      int num=sc.nextInt();
+      System.out.print(a+" "+b);
+       for(int i=0;i<=num;i++)
+       {
+           c=a+b;
+           System.out.print(" "+c);
+           a=b;
+           b=c;
+        }
+    }
+}
+
+
+2)usiing recursion
+
+package ads;
+import java.util.*;
+class FibboDemo
+{
+    static int a=0,b=1,c;
+    
+    static void fun(int n)
+    {
+      if(n>=1)
+      {
+          c=a+b;
+          System.out.print(" "+c);
+          a=b;
+          b=c;
+          fun(n-1);    
+      }
+    }
+     public static void main(String ars[])
+     {
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        FibboDemo fb=new FibboDemo();
+        System.out.print(a+" "+b);
+        fb.fun(num);
+         
+         
+     }
+}
+
+
+========================Factorial========================
+
+package ads;
+import java.util.*;
+class FactIteration
+{
+    public static void main(String args[])
+    {
+          int fact=1;
+          Scanner sc  =new Scanner(System.in);
+          int num=sc.nextInt();
+          for(int i=1;i<=num;i++)
+          {
+              
+              fact=fact*i;
+          }
+          System.out.println("fact:"+fact);
+          
+    }
+    
+}
+
+
+===================largest no=================================
+
+
+
+1) simple --->int float double
+
+
+package ads;
+import java.util.*;
+class LargestNo
+{
+    public static void  main(String args[])
+    {
+        float x,y,z;
+        Scanner sc=new Scanner(System.in);
+        x=sc.nextFloat();
+        y=sc.nextFloat();
+        z=sc.nextFloat();
+        if(x>y && x>z)
+        {
+            System.out.println("X is largest number");
+        }
+        else if(y>x && y>z)
+        {
+           System.out.println("Y is largest number"); 
+        }else
+        {
+            System.out.println("Z is largest number");
+        }
+            
+    }
+}
+
+
+
+2) using generics
+
+
+public class Generics
+{
+  
+  public static <T extends Comparable<T>> T maximum(T x, T y, T z) 
+{
+    T max = x;       
+    if (y.compareTo(max) > 0)
+
+      max = y; 
+
+    if (z.compareTo(max) > 0)
+      max = z; 
+
+    return max; 
+  } /
+
+  public static void main(String args[]) 
+   {
+    System.out.printf("Maximum of %d, %d and %d is %d\n\n", 3, 4, 5, maximum(3, 4, 5));
+   
+   System.out.printf("Maximum of %.1f, %.1f and %.1f is %.1f\n\n", 6.6, 8.8, 7.7, maximum(6.6,
+        8.8, 7.7));
+    System.out.printf("Maximum of %s, %s and %s is %s\n", "pear", "apple", "orange", maximum(
+        "pear", "apple", "orange"));
+  }
+}
+
+
+==============================Stack==============================
+
+1)using array
+
+
+class StackArray
+{
+    int max=5;
+    int Stack[];
+    int top;
+    StackArray()
+    {
+        Stack=new int[max];
+        top=0;
+    }
+    
+    void push(int data)
+    {
+        if(top==max-1)
+        {
+            System.out.println("Stack overFlow");
+        }else
+        {
+           
+            Stack[top]=data;
+              top=top+1;
+        }
+    }
+    int pop()
+    {
+        if(top<=0)
+        {
+            System.out.println("Stack underflow");
+            return -1;
+        }
+        else
+            return Stack[--top];
+    }
+  boolean empty()
+    {
+        return top==0;
+    }
+  
+  int top()
+  {
+      if(empty())
+      {
+          System.out.println("Stack is empty");
+          return -1;
+      }else
+      {
+          return Stack[top-1];
+      }
+  }
+  public static void main(String args[])
+  {
+      StackArray sa=new StackArray();
+      sa.push(70);
+      sa.push(80);
+      System.out.println(" "+sa.pop()+" "+sa.pop());
+  }
+}
+
+
+2) using linkedList
+
+
+class StackLinkedList
+{
+    class Node
+    {
+        int data;
+        Node next;
+       
+    }
+    Node top;
+    void push(int data)
+    {
+        Node newNode=new Node();
+        if(newNode==null)
+        {
+            System.out.println("Stack overflow");
+            return;
+        }
+        newNode.data=data;
+        newNode.next=top;
+        top=newNode;
+    }
+    void pop()
+    {
+        if(top==null)
+        {
+            System.out.println("Stack underflow");
+        }else
+        {
+            Node ptr=top;
+            top=top.next;
+            ptr=null;
+        }
+    }
+    boolean empty()
+    {
+            return top==null;
+    }
+    int peek()
+    {
+        if(empty())
+        {
+            System.out.println("Stack is empty");
+            return -1;
+        }else
+        {
+            return top.data;
+        }
+    }
+    void display()
+    {
+        if(top==null)
+        {
+            System.out.println("Stack is empty");
+        }else
+        {
+            Node temp=top;
+            while(temp!=null)
+            {
+                System.out.print(temp.data+"-->");
+                temp=temp.next;
+            }
+        }
+    }
+    public static void main(String args[])
+    {
+        StackLinkedList sl=new StackLinkedList();
+        sl.push(40);
+        sl.push(50);
+        sl.push(60);
+        sl.push(70);
+        
+        sl.display();
+        System.out.println();
+        System.out.println(" "+sl.peek());
+        sl.pop();
+        sl.pop();
+         sl.display();
+         System.out.println();
+        System.out.println(" "+sl.peek());
+    }
+}
+
+
+3) bracket program
+
+
+class A {
+
+	  
+		   static int countopen=0;
+		   static int countclose=0;
+		    void push(char i)
+		    {
+		        if(i=='(' || i=='{' || i=='[')
+		        {
+		       countopen++;
+		       
+		        }
+		        
+		     
+		    }
+		    void pop(char i)
+		    {
+		        if(i==')' || i=='}' || i==']')
+		        {
+		           countclose++;
+		        }
+		    }
+		}
+	public 	class ParanthesisCheck 
+		{
+		    public static void main(String[] args)
+		    {
+		    	A obj=new A();
+		        String s=("{[()]}");
+		        
+		       for (int i=0; i<s.length();i++)
+		       {
+		           obj.push(s.charAt(i));
+		       }
+		     
+		       for (int i=0; i<s.length();i++)
+		       {
+		           obj.pop(s.charAt(i));
+		       }
+		       if(A.countopen==A.countclose)
+		       {
+		           System.out.println("blanced");
+		       }
+		       else
+		       {
+		           System.out.println("unbalnced");
+		       }
+		    }
+		}
+
+
+============================Queue============================
+
+1) linear usin array
+
+
+class QueueArray
+{
+    int max;
+    int queue[];
+    int rear;
+    int front;
+    QueueArray(int max)
+    {
+        rear=front=0;
+        this.max=max;
+        queue=new int[max];
+    }
+    public void enQueue(int data)
+    {
+        if(rear==max-1)
+        {
+            System.out.println("Queue Overflow");
+            return;
+        }
+        if(rear==-1 && front==-1)
+        {
+           rear=front=0;
+        }else
+        {
+          
+            queue[rear]=data;
+             rear++;
+        }
+        return;
+    }
+    public void deQueue()
+    {
+        if(rear==-1||front>rear)
+        {
+            System.out.println("Queue underflow");
+        }else
+        {
+            int data=queue[front];
+            if(rear==front)
+            {
+                rear=-1;
+                front=-1;
+            }else
+            {
+                front++;
+            }
+        }
+        return;
+    }
+    int peek()
+    {
+        if(rear==-1||front>rear)
+        {
+            System.out.println("Queue is empty");
+            return -1;
+        }else
+        {
+            return queue[front];
+        }
+    }
+    void display()
+    {
+        if(rear==front)
+        {
+            System.out.println("queue is empty");
+            return ;
+        }
+        for(int i=front;i<rear;i++)
+        {
+            System.out.print(queue[i]+"--> ");
+        }
+    }
+    public static void main(String args[])
+    {
+        QueueArray qa=new QueueArray(5);
+        qa.enQueue(10);
+        qa.enQueue(20); 
+        qa.enQueue(30);
+        qa.display();
+        System.out.println();
+        qa.deQueue();
+        qa.deQueue(); 
+         
+        qa.display();
+    }
+}
+
+2) using linkedlist
+
+class Node
+    {
+        int data;
+        Node next;
+        Node(int data)
+        {
+            this.data=data;
+        }
+    }
+class QueueLinked
+{
+    Node front,rear;
+    int max;
+    int Queue[];
+    QueueLinked(int max)
+    {
+        front=rear=null;
+        Queue=new int[max];
+    }
+    
+    void enqueue(int data)
+    {
+        Node newNode=new Node(data);
+        if(rear==null)
+        {
+            front=rear=newNode;
+            newNode.next=null;
+        }
+        else
+        {
+            rear.next=newNode;
+            rear=newNode;
+            newNode.next=null;
+        }
+        return;
+    }
+    void dequeue()
+    {
+        if(front==null)
+        {
+            System.out.println("Queue is under flow");
+        }else
+        {
+            Node ptr=front;
+            front=front.next;
+            ptr=null;
+            
+        }
+        
+    }
+    void show()
+    {
+       
+        if(front==rear)
+        {
+            System.out.println("Queue in empty");
+        }
+        for(int x:Queue)
+        {
+            System.out.println(x);
+        }
+    }
+    
+    public static void main(String args[])
+    {
+      QueueLinked ql=new QueueLinked(10);
+      ql.enqueue(20);
+      ql.enqueue(40);
+      ql.enqueue(60);
+      ql.enqueue(30);
+       ql.dequeue();
+      System.out.println("front queue"+ql.front.data);
+      
+      
+     
+      System.out.println("rear queue"+ql.rear.data);
+      
+    }
+}
+
+
+
+3) circular 
+
+
+class CircularQueue
+{
+    int max=5;
+    int arr[];
+    int front,rear;
+    CircularQueue()
+    {
+        arr=new int[max];
+        front=rear=-1;
+    }
+    void enqueue(int data)
+    {
+        if(rear==max-1)
+            System.out.println("queue overflow");
+        if(rear==-1 || front ==-1)
+        {
+            rear=front=0;
+        }else if(rear==max-1 && front!=0)
+        {
+            rear=0;
+        }else
+        {
+            rear++;
+        }
+        arr[rear]=data;
+    }
+    void dequeue()
+    {
+        if(front==-1)
+            System.out.println("underflow");
+        if(front==rear)
+        {
+            rear=front=-1;
+        }else if(front==0 && rear==max-1)
+        {
+            front=0;
+        }else
+        {
+            front++;
+        }
+    }
+    void print()
+    {
+      for(int i=front;i<rear;i++)
+      {
+          System.out.println(arr[i]);
+      }
+    }
+    void display()
+    {
+        int i;
+        if(front==-1)
+        {
+            System.out.println("Queue is empty");
+        }else 
+        {
+            System.out.println("Front -->"+front);
+            System.out.println("item-->");
+            for(i=front;i!=rear;i=(i+1)%max)
+            System.out.print(arr[i]+" ");
+            System.out.println(arr[i]);
+            System.out.println("Rear->"+rear);
+        }
+    }
+    public static void main(String args[])
+    {
+        CircularQueue cq=new CircularQueue();
+        cq.enqueue(10);
+        cq.enqueue(20);
+        cq.enqueue(30);
+        cq.enqueue(40);
+        cq.display();
+        cq.dequeue();
+        cq.dequeue();
+        cq.display();
+    }
+}
+
+
+3) Doubly queue
+
+
+public class DoubleEndedQueue 
+{
+	Scanner sc=new Scanner(System.in);
+	int max;
+	int deque[],left,right;
+	
+	DoubleEndedQueue()
+	{
+		max=10;
+		deque=new int[max];
+		left=right=-1;
+	}
+
+	void input_deque()
+	{
+		int option;
+		do {
+		System.out.printf("\nINPUT RESTRICTED DEQUE");
+		System.out.printf("\n 1. Insert at right");
+		System.out.printf("\n 2. Delete at left");
+		System.out.printf("\n 3. Delete at right");
+		System.out.printf("\n 4. Display");
+		System.out.printf("\n 5. Quit");
+		System.out.printf("\n Enter your Option : ");
+		 option=sc.nextInt();
+		switch(option)
+			{
+				case 1:
+					insert_right();
+					break;
+				case 2:
+					delete_left();
+				case 3:
+					delete_right();
+					break;
+				case 4:
+					display();
+					break;
+			}
+		
+		}while(option!=5);
+		
+	}
+	 void insert_right() 
+	 {
+		 System.out.print("Enter the value :");
+		 int val=sc.nextInt();
+		 if(left == 0 && right == max-1 || (left == right+1))
+		 {
+			 System.out.printf("\n OVERFLOW");
+		 }
+		 if (left == -1) 
+		 {
+		 left = 0;
+		 right = 0;
+		 }
+		 else
+		 {
+		 if(right == max-1) 
+		 right = 0;
+		 else
+		 right = right+1;
+		 }
+		 deque[right] = val ;
+	}
+		 
+	 
+	 void delete_left()
+	 {
+		 if (left == -1)
+		 {
+		System.out.printf("\n UNDERFLOW");
+		 return ;
+		 }
+		 System.out.printf("\n The deleted element is : %d", deque[left]);
+		 if(left == right) 
+		 {
+		 left = -1;
+		 right = -1;
+		 }
+		 else
+		 {
+		 if(left == max-1)
+		 left = 0;
+		 else
+		 left = left+1;
+		 }
+	 }
+		 
+	 
+		
+	 void delete_right()
+	 {
+		 if (left == -1)
+		 {
+			 System.out.printf("\n UNDERFLOW");
+		 return ;
+		 }
+		 System.out.printf("\n The element deleted is : %d", deque[right]);
+		 if(left == right) 
+		 {
+		 left = -1;
+		 right = -1;
+		 }
+		 else
+		 {
+		 if(right == 0)
+		 right=max-1;
+		 else
+		 right=right-1;
+		 }
+	 }
+	
+	 void display()
+	 {
+		 int front = left, rear = right;
+		 if(front == -1)
+		 {
+			 System.out.printf("\n QUEUE IS EMPTY");
+		 return;
+		 }
+		 System.out.printf("\n The elements of the queue are : ");
+	
+		 if(front <= rear )
+		 {
+		 while(front <= rear)
+		 {
+			 System.out.printf("%d   ",deque[front]);
+		 front++;
+		 }
+		 }
+		 else
+		 {
+		 while(front <= max-1)
+		 {
+			 System.out.printf("%d   ", deque[front]);
+		 front++;
+		 }
+		 front = 0;
+		 while(front <= rear)
+		 {
+			 System.out.printf("%d  ",deque[front]);
+		 front++;
+		 }
+		 }
+	 }
+	 
+	 
+	 
+	 void output_deque()
+	 {
+		 int option;
+	 do
+	 {
+		 
+		 
+		 System.out.printf("\n 1.Insert at right");
+		 System.out.printf("\n 2.Insert at left");
+		 System.out.printf("\n 3.Delete from left");
+		 System.out.printf("\n 4.Display");
+		 System.out.printf("\n 5.Quit");
+		 System.out.printf("\n Enter your option : ");
+		 option=sc.nextInt();
+	 switch(option)
+	 {
+		 case 1:
+			 insert_right();
+			 break;
+		 case 2:
+			 insert_left();
+			 break;
+		 case 3:
+			 delete_left();
+			 break;
+		 case 4:
+			 display();
+		 break;
+	 }
+	 }while(option!=5);
+	 }
+	 
+	 void insert_left()
+	 {
+	
+	 System.out.printf("\n Enter the value to be added:");
+	 int val=sc.nextInt();
+	 if((left == 0 && right == max-1) || (left == right+1))
+	 {
+		 System.out.printf("\n Overflow");
+	 return;
+	 }
+	
+	 if (left == -1)
+	 {
+	 left = 0;
+	 right = 0;
+	 }
+	 else
+	 {
+	 if(left == 0)
+	 left=max-1;
+	 else
+	 left=left-1;
+	 }
+	 deque[left] = val;
+	 }
+	 
+	 public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);;
+		DoubleEndedQueue deq=new DoubleEndedQueue();
+		System.out.print("***** Main Manu *****\n\n");
+		System.out.println("1. Input Restricted Deque");
+		System.out.println("2. Output Restricted Deque");
+		System.out.print("Enter your option : ");
+		int option=sc.nextInt();
+		switch(option)
+		{
+			case 1:
+				deq.input_deque();
+				break;
+			case 2:
+				deq.output_deque();
+				break;
+		}
+		
+	}
+
+}
+
+============================LinkedList===========================
+
+1)singly linked list
+
+class Node
+{
+    Node next;
+    int data;
+}
+class SinglyLink
+{
+    Node head;
+    void inserFirst(int data1)
+    {
+        Node ob = new Node();
+        ob.data=data1;
+        ob.next=head;
+        head=ob;
+    }
+    void insertLast(int data1)
+    {
+        Node ob =new Node();
+        ob.data=data1;
+        if(head== null)
+        {
+            head=ob;
+        }
+        else
+        {
+            Node ag = head;
+            while(ag.next !=null)
+            {
+                ag=ag.next;
+            }
+            ob.next =ag.next;
+            ag.next=ob;
+        }
+        
+    }
+    int count(int search_for) 
+    { 
+        Node current = head; 
+        int count = 0; 
+        while (current != null) { 
+            if (current.data == search_for) 
+                count++; 
+            current = current.next; 
+        } 
+        return count; 
+    } 
+  
+    void DeleteFirst()
+    {
+        head=head.next;
+    }
+    void DeleteLast()
+    {
+        Node n= head;
+        while(n.next.next!= null)
+        { 
+           
+            n=n.next;
+           
+        }
+         n.next=n.next.next;
+        
+    }
+    void InsertMiddle(int val,int pos)
+    {
+        Node ob =new Node();
+        ob.data=val;
+        Node n= head;
+         int len=0;
+        while(n.next!=null)
+        { 
+            len++;
+            if(pos==len)
+            {
+                break;
+            }
+            n=n.next;
+        }
+        ob.next=n.next;
+        n.next=ob;
+    }
+    void DeleteMiddle(int val)
+    {
+        Node n= head;
+ 
+        while(n.next!=null)
+        { 
+ 
+            if(val==n.next.data)
+            {
+                break;
+            }
+          
+        }
+      n.next=n.next.next;
+    }
+    void print()
+    {
+        node1 k= head;
+        while(k.next  != null)
+        {
+            System.out.println(k.data);
+            k=k.next;
+        }
+        System.out.println(k.data);
+    }
+    public static void main(String[] args)
+    {
+      SinglyLink bj= new SinglyLink();
+       bj.inserFirst(10);
+       bj.insertLast(50);
+       bj.insertLast(70);
+       bj.insertLast(80);
+     
+       bj.print();
+       bj.count(1);
+    
+    }
+}
+
+2) doubly Link
+
+class Node 
+   {
+    int data;
+    Node fLink;
+    Node bLink;
+    
+    Node(int data)
+      {
+        this.data=data;
+        this.fLink=this.bLink=null;
+       }
+    }
+   
+class DoublyLinkedList
+{
+    private Node start;//reference starting pointer
+    private int length; //keep the track on how many element in list
+  
+    DoublyLinkedList()
+    {
+      start=null;
+      length=0;
+    }
+   
+   public void insertBeg(int data)
+   {
+       Node newNode=new Node(data); //create new node
+       
+       if(start==null)
+       {
+         start=newNode;
+       }
+       else
+       {
+           start.bLink=newNode;
+           newNode.fLink=start;
+           start=newNode;
+           
+       }
+       
+       System.out.println(newNode.data+" ");
+       length++;
+       
+   }
+   
+   public void insertEnd(int data)
+   {
+       Node newNode=new Node(data); 
+       
+       if(start==null)
+       {
+           start=newNode;
+       }
+       else
+       {
+         Node n=start;
+         while(n.fLink!=null)
+         {
+            n= n.fLink;
+         }
+         n.fLink=newNode;
+         newNode.bLink=n;
+       }
+       System.out.println(newNode.data);
+       length++;
+ 
+   }
+  
+   public void insertPos(int data,int pos)
+   {
+       
+       if(pos==1)
+       {
+           insertBeg(data);
+       }else if(pos>length)
+        
+       {
+         insertEnd(data);
+       }
+       
+       else
+       {
+               int i=1;
+               Node n=start;
+               while(n != null)
+               {
+                 i++;
+               if(i==pos)
+               {
+                   break;
+               }
+               else
+               {
+                n=n.fLink;
+               }
+               }
+               
+               Node newNode=new Node(data);
+               
+               newNode.bLink=n;
+               newNode.fLink=n.fLink;
+               n.fLink.bLink=newNode;
+               n.fLink=newNode;
+               
+               length++;
+               System.out.println(newNode.data);
+       }
+         
+   }
+   //deletion
+    public void deletBeg(int data)
+   {
+       Node n=start;
+       if(start==null)
+       {
+           System.out.println("link empty");
+       }
+       else
+       {
+           start=n.fLink;
+           start.bLink=null;
+       }
+       length--;
+   }
+   public void deletEnd(int data)
+   {
+      
+      if(start==null)
+      {
+          System.out.println("list empty");
+          
+      }
+      Node n= start;
+      while(n.fLink.fLink!=null)
+      {
+          n=n.fLink;
+      }
+          n.fLink.bLink=null;
+          n.fLink=null;
+          length--;
+      
+   }
+   public void deletPos(int data,int pos)
+   {
+       if(pos<0)
+       {
+           System.out.println("Pos does not");
+           return;
+       }
+       if(pos==1)
+       {
+           deletBeg(data);
+       }
+       else if(pos >length){
+           deletEnd(data);
+       }else
+       {
+         int i=1;
+         Node n=start;
+         while(n.fLink!=null)
+         {
+             i++;
+             if(i==pos)
+             break;
+             n=n.fLink;
+         }
+           n.fLink.fLink.bLink=n;
+           n.fLink=n.fLink.fLink;
+           
+           System.out.println("delete position ");
+           length--;
+         }
+       }
+       
+   
+   
+   public void displayForward()
+   {
+       Node n=start;
+       while(n !=null)
+       {
+           System.out.print(n.data+"-->");
+           n=n.fLink;
+       }
+       
+   }
+   
+    public void displayBackward()
+   {
+       Node n=start;
+       while(n.fLink != null)
+       {
+           n=n.fLink;
+       }
+       while(n != null)
+       {
+           System.out.print(n.data+"<--");
+           n=n.bLink;
+       }
+   }
+   
+   public static void main(String args[])
+   {
+       DoublyLinkedList dl=new DoublyLinkedList();
+       dl.insertBeg(10);
+       dl.insertBeg(20);
+       dl.insertBeg(30);
+       dl.insertEnd(40);
+       
+       dl.insertPos(66,3);
+       
+       dl.displayForward();
+       System.out.println();
+       
+       dl.deletEnd(40);
+       dl.deletBeg(30);
+       //dl.deletPos(20,2);
+       
+            
+       dl.displayBackward();
+       System.out.println();
+   }
+   
+   
+}
+----------------------Sorting----------------------------------
+
+Sorting program
+================================
+
+=====Bubble======
+
+package Sorting;
+class Bubble
+{
+  static void bubbleSort(long arr[]) 
+  {
+     int n=arr.length;
+     long temp=0;
+      for(int i=0;i<n-1;i++)
+      {
+          for(int j=1;j<n-i;j++)
+          {
+              if(arr[j-1]>arr[j])
+              {
+                temp = arr[j-1];
+                arr[j-1] = arr[j];
+                arr[j] =temp;
+              }
+          }
+      }
+  }
+      
+}
+
+class BubbleSortTest
+{
+    public static void main(String args[])
+    {
+        Bubble ob=new Bubble();
+        long arr[]={11,88,55,44,66,77,22,99};
+        System.out.print("Array before Sort"+" ");
+        for(int  i=0;i<arr.length;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+       
+         ob.bubbleSort(arr);
+         System.out.println();
+         
+        System.out.print("Array after Sort"+" ");
+        for(int  i=0;i<arr.length;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }   
+    }
+}
+
+==========================selection sort====================
+
+
+package Sorting;
+class SelectionSort
+{
+   void sort(int arr[])
+    {
+        int temp=0;
+        int n=arr.length;
+        for(int i=0;i<n-1;i++)
+        {
+            int min=i;
+            for(int j=i+1;j<n;j++)
+            {
+                if(arr[j]<arr[min])
+                    min=j;
+                
+                //swap
+                temp=arr[min];
+                arr[min]=arr[i];
+                arr[i]=temp;
+            }
+        }
+    }
+    void print(int arr[])
+    {
+    int n=arr.length;
+    for(int i=0;i<n;++i)
+     {
+         System.out.print(arr[i]+" ");
+     
+     }
+    }
+    public static void main(String args[])
+    {
+     SelectionSort ss=new SelectionSort();
+     int arr[]={10,80,45,62,74,78,95,56,41};
+     ss.sort(arr);
+     
+     System.out.println("Sorted Array");
+     ss.print(arr);
+    }
+}
+================================insertion sort============================
+
+
+
+
+package Sorting;
+class InsertionSort
+{
+    
+    void sort(int arr[])
+    {
+        int n=arr.length;
+       
+        for(int i=1;i<n;++i)
+        {
+        int temp=arr[i];
+        int j=i-1;
+        while(j>=0 && arr[j]>temp)
+        {
+            arr[j+1]=arr[j];
+            j=j-1;
+        }
+        arr[j+1]=temp;
+        }
+    }
+    void print(int arr[])
+    {
+     int n=arr.length;
+     for(int i=0;i<n;i++)
+     {
+         System.out.print(arr[i]+" ");
+     }
+    }
+    public static void main(String args[])
+    {
+        InsertionSort is=new InsertionSort();
+        int arr[]={10,30,85,65,45,51,59,67,23,95};
+        is.sort(arr);
+        is.print(arr);
+    }
+}
+========================================merge sort================================
+
+
+
+package Sorting;
+import java.util.Arrays;
+class MergeSort2
+{
+  
+   void merge(int arr[],int low,int m, int high)
+    {
+        int n1=m-low+1;
+        int n2=high-m;
+        
+        int a[]=new int[n1];
+        int b[]=new int[n2];
+        
+          for(int i=0; i<n1; i++)
+          a[i]=arr[low+i];
+          
+          for(int j=0; j<n2; j++)
+          b[j]=arr[m+1+j];
+          
+          int i=0,j=0;
+          int k=low;
+          
+          while(i < n1 && j < n2)
+          {
+              if(a[i]<=b[j])
+              {
+                  arr[k]=a[i];
+                  i++;
+              }else
+              {
+                  arr[k]=b[j];
+                  j++;
+              }
+              k++;
+          }
+          while(i<n1)
+          {
+              arr[k++]=a[i++];
+             
+          }
+          while(j<n2)
+          {
+              arr[k++]=b[j++];
+             
+          }
+    }
+      void mergeSort(int arr[],int low,int high)
+      {
+        if(low<high)
+        {
+            int m=(low+high)/2;
+           mergeSort(arr, low, m);
+            mergeSort(arr, m + 1, high);
+            merge(arr, low, m, high);
+        }
+      }
+   
+    public static void main(String args[])
+    {
+        int arr[]={6,5,12,10,9,1};
+        MergeSort2 ms=new MergeSort2();
+        
+        ms.mergeSort(arr, 0, arr.length-1);
+        
+        System.out.println("Sorted array");
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+    
+
+
+ =====================================Quick sort========================
+
+
+package Sorting;
+class QuickSort
+{
+  int partition(int arr[],int left,int right)
+    {
+        int pivot=arr[right];
+        int i=(left-1);
+        for(int j=left;j<right;j++)
+        {
+            if(arr[j]<pivot)
+            {
+                i++;
+                
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+        int temp=arr[i+1];
+        arr[i+1]=arr[right];
+        arr[right]=temp;
+        
+        return i+1;
+    }
+    void sort(int arr[],int left,int right)
+    {
+        if(left<right)
+        {
+            int pi= partition(arr,left,right);
+            sort(arr,left,pi-1);
+            sort(arr,pi+1,right);
+        }
+    }
+    void printArray(int arr[])
+    {
+        for(int i=0;i<arr.length;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+    }
+    public static void main(String ars[])
+    {
+        int arr[]={45,9,21,13,1,15,95};
+        int n=arr.length;
+        QuickSort qs=new QuickSort();
+       
+        System.out.println("OriginalArray");
+        qs.printArray(arr);
+        
+         qs.sort(arr,0,n-1);
+        System.out.println("Sorted Array");
+        qs.printArray(arr);
+    }
+}
